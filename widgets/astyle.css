@@ -1,0 +1,59 @@
+.quick-stats h2 {
+        margin: 2px 0 1px 0;
+        line-height: 29px;
+        font-size: 30px;
+        left: 10px;
+        top: 10px;
+        position: absolute;
+        line-height: 100%;
+        color: #fff;
+    }
+    .quick-stats [id^="stats-line"] {
+        margin-left: -2px;
+        width: 101%;
+    }
+    .pull-left {
+        float: left !important;
+    }
+    .quick-stats small {
+        bottom: 15px;
+        left: 11px;
+        position: absolute;
+    }
+    .quick-stats small {
+        font-size: 11px;
+        text-transform: uppercase;
+        width: 100%;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        float: left;
+        margin-bottom: 2px;
+    }
+    small {
+        color: #fff;
+    }
+    .tile, .tile-dark, .tile-title, .table th {
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.25);
+    }
+    .tile, .tile-dark, .tile-title, .table th {
+        background: rgba(0,0,0,0.35);
+    }
+    .tile {
+        position: relative;
+        margin-bottom: 15px;
+    }
+    .quick-stats {
+        padding: 13px 0 0 0;
+        height: 75px;
+        overflow: hidden;
+    }
+    canvas{
+        width: 100% !important;
+        min-width: 150px !important;
+        height: 75px !important;
+        min-height: 75px !important;
+        margin: 0px 0px 0px -10px;
+        background: cover;
+        
+    }
