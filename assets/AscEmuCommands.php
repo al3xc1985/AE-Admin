@@ -4,6 +4,9 @@ require_once('MySQLConnection.php');
 
 class AECommands
 {
+    public $accountCache = '';
+    public $updateTime = '';
+    
     private function connect()
     {
         $configs = include('config.php');
@@ -35,6 +38,19 @@ class AECommands
         $t->setPrompt($buffer);
         
         return "Command 'reloadscripts' performed successfully ".$buffer;
+    }
+    
+    public function runGetAccountData()
+    {
+        $t = $this->connect();
+        
+        $buffer = $t->exec('getaccountdata');
+        $t->setPrompt($buffer);
+        
+        $this->accountCache = $buffer;
+        $this->updateTime = date("Y-m-d H:i:s");
+        
+        return "Command 'getaccountdata' performed successfully";
     }
 }
 ?>

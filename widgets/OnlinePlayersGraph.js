@@ -13,7 +13,7 @@ function timeConverter(UNIX_timestamp){
 
 $(document).ready(function(){
 	$.ajax({
-		url : "http://127.0.0.1/admin_panel/widgets/OnlinePlayersData.php",
+		url : "OnlinePlayersData.php",
 		type : "GET",
 		success : function(data){
 			console.log(data);

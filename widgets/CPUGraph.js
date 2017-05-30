@@ -13,7 +13,7 @@ function timeConverter(UNIX_timestamp){
 
 $(document).ready(function(){
 	$.ajax({
-		url : "http://127.0.0.1/admin_panel/widgets/CPUData.php",
+		url : "CPUData.php",
 		type : "GET",
 		success : function(data){
 			console.log(data);

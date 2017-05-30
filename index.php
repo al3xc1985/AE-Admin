@@ -123,12 +123,17 @@ $alert = '';
 
         if (isset($_GET['info']))
         {
-            $alert = $AECommand->runInfoCommand();
+            //$alert = $AECommand->runInfoCommand();
         }
     
         if (isset($_GET['reloadscripts']))
         {
             $alert = $AECommand->runReloadScripts();
+        }
+        
+        if (isset($_GET['getaccountdata']))
+        {
+            $alert = $AECommand->runGetAccountData();
         }
     
         // init class
@@ -167,6 +172,7 @@ $alert = '';
                         <ul class="dropdown-menu forAnimate" role="menu">
                             <li><a href='index.php?info'>Server Info</a></li>
                             <li><a href='index.php?reloadscripts'>Reload Scripts</a></li>
+                            <li><a href='index.php?getaccountdata'>Get Account Data</a></li>
                             <!--<li><a href="#">Another action</a></li>
                             <li><a href="#">Something else here</a></li>
                             <li class="divider"></li>
@@ -266,7 +272,55 @@ $alert = '';
                 </div>
 
                 <div class="col-md-6 col-xs-6">
-                    Important stuff - right
+                    <div class="content_holder">
+                        <div class="header_holder">
+                            <h2>Accountlist</h2>
+                            <small>LIST UPDATED: 
+                                <?php
+                                    if ($AECommand->updateTime != '')
+                                        echo $AECommand->updateTime;
+                                    else
+                                        echo "NON!";
+                                ?>
+                            </small>
+                        </div>
+                        <?php
+                            if ($AECommand->accountCache != '')
+                            {
+                                $a = array_map(
+                                    function ($substr)
+                                    {
+                                        return explode(',', $substr);
+                                    }, 
+                                    explode(';', $AECommand->accountCache)
+                                );
+                                
+                                echo '<table id="accountList" class="table table-striped" cellspacing="0" width="100%">
+                                            <thead>
+                                                <tr>
+                                                    <th><small>ID</small></th>
+                                                    <th><small>ACCOUNT</small></th>
+                                                    <th><small>GM-LEVEL</small></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>';
+                                foreach($a as $accArray)
+                                {
+                                    echo '<tr>
+                                            <td>'.$accArray[0].'</td>
+                                            <td>'.$accArray[1].'</td>
+                                            <td>'.$accArray[2].'</td>
+                                          </tr>';
+                                }
+                                echo '</tbody>
+                                    </table>';
+                            }
+                            else
+                            {
+                                echo 'Run \'Get Account Data\' to receive the current account list.';
+                            }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
@@ -289,11 +343,18 @@ $alert = '';
     <script type="text/javascript" src="widgets/RAMGraph.js"></script>
     <script type="text/javascript" src="widgets/LatencyGraph.js"></script>
     <script>
-                        $(document).ready(function() {
-                            $('#characterList').DataTable({
-                                responsive: true
-                            });
-                        } );
-                    </script>
+        $(document).ready(function() {
+            $('#characterList').DataTable({
+                responsive: true
+                });
+        } );
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('#accountList').DataTable({
+                responsive: true
+            });
+        } );
+    </script>
 </body>
 </html>
